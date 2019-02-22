@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/newTask"
+        android:icon="@drawable/ic_add"
+        android:title="@string/new_task"
+        app:showAsAction="ifRoom|withText"/>
+
+    <item
+        android:id="@+id/showCompleted"
+        android:title="@string/show_completed"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/createTestTasks"
+        android:title="@string/test_tasks"
+        app:showAsAction="never"/>
+
+</menu>

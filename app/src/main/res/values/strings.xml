@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Re-mind-er</string>
+    <string name="task_title_label">What?</string>
+    <string name="task_date_label">When?</string>
+    <string name="task_priority_label">How important?</string>
+    <string name="task_priority_high_option">High</string>
+    <string name="task_priority_normal_option">Normal</string>
+    <string name="task_priority_low_option">Low</string>
+    <string name="task_done_label">Done?</string>
+    <string name="task_done_field">Done!</string>
+    <string name="new_task">New Task</string>
+    <string name="show_completed">Show Completed</string>
+    <string name="hide_completed">Hide Completed</string>
+    <string name="test_tasks">Test Tasks</string>
+    <string name="delete_task">Delete</string>
+    <string name="priority_tab_content">Priority Tab</string>
+    <string name="date_tab_content">Date Tab</string>
+</resources>

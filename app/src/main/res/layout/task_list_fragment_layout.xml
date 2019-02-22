@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+<android.support.design.widget.TabLayout
+    android:id="@+id/tabLayout"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    app:tabIconTint="@color/colorAccent">
+
+    <android.support.design.widget.TabItem
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:icon="@drawable/ic_priority"
+        android:contentDescription="@string/priority_tab_content"/>
+
+    <android.support.design.widget.TabItem
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:icon="@drawable/ic_date"
+        android:contentDescription="@string/date_tab_content"/>
+
+</android.support.design.widget.TabLayout>
+
+<android.support.v7.widget.RecyclerView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/taskListRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+</android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

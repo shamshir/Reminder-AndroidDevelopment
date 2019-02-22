@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/taskTitleLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_title_label"
+        android:textSize="@dimen/task_questions"/>
+
+    <EditText
+        android:id="@+id/taskTitleField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text=""
+        android:textSize="@dimen/task_answers"/>
+
+    <TextView
+        android:id="@+id/taskDateLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_date_label"
+        android:textSize="@dimen/task_questions"/>
+
+    <EditText
+        android:id="@+id/taskDateField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:text=""
+        android:textSize="@dimen/task_answers"
+        android:focusableInTouchMode="false"/>
+
+    <TextView
+        android:id="@+id/taskPriorityLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_priority_label"
+        android:textSize="@dimen/task_questions" />
+
+    <RadioGroup
+        android:id="@+id/taskPriorityAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/taskPriorityHigh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/task_priority_high_option"
+            android:textSize="@dimen/task_answers"/>
+
+        <RadioButton
+            android:id="@+id/taskPriorityNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/task_priority_normal_option"
+            android:textSize="@dimen/task_answers"/>
+
+        <RadioButton
+            android:id="@+id/taskPriorityLow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/task_priority_low_option"
+            android:textSize="@dimen/task_answers"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/taskDoneLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_done_label"
+        android:textSize="@dimen/task_questions"/>
+
+    <CheckBox
+        android:id="@+id/taskDoneField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_done_field"
+        android:textSize="@dimen/task_answers"/>
+
+</LinearLayout>
