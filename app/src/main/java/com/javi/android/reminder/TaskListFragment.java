@@ -73,6 +73,18 @@ public class TaskListFragment extends Fragment {
             }
         });
 
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Task task = new Task();
+                TaskCollection.get(getActivity()).addTask(task);
+                Intent intent = new Intent(getActivity(), TaskActivity.class);
+                intent.putExtra("taskId", task.getId());
+                startActivity(intent);
+            }
+        });
+
         if (savedInstanceState != null) {
             completedVisible = savedInstanceState.getBoolean("completedString");
         }

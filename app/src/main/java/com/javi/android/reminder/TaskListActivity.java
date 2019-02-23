@@ -8,33 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class TaskListActivity extends AppCompatActivity implements View.OnClickListener {
+public class TaskListActivity extends SingleFragmentActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.single_fragment_layout_with_fab);
+    protected Fragment createFragment() {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainerFab);
-
-        if (fragment == null) {
-            fragment = new TaskListFragment();
-            fragmentManager.beginTransaction()
-                    .add(R.id.fragmentContainerFab, fragment)
-                    .commit();
-        }
-
-        FloatingActionButton button = (FloatingActionButton) findViewById(R.id.fab);
-        button.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        Task task = new Task();
-        TaskCollection.get(this).addTask(task);
-        Intent intent = new Intent(this, TaskActivity.class);
-        intent.putExtra("taskId", task.getId());
-        startActivity(intent);
+        return new TaskListFragment();
     }
 }
