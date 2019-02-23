@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,13 +20,13 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class TaskListFragment extends Fragment {
 
     private RecyclerView taskRecyclerView;
+    private TabLayout tabLayout;
+    private FloatingActionButton fab;
     private String orderBy = "byPriority";
     private TaskAdapter taskAdapter;
     private boolean completedVisible;
@@ -46,7 +45,7 @@ public class TaskListFragment extends Fragment {
         taskRecyclerView = (RecyclerView) view.findViewById(R.id.taskListRecyclerView);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -73,7 +72,7 @@ public class TaskListFragment extends Fragment {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +81,19 @@ public class TaskListFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), TaskActivity.class);
                 intent.putExtra("taskId", task.getId());
                 startActivity(intent);
+            }
+        });
+        taskRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
+                    fab.show();
+                }
             }
         });
 

@@ -19,7 +19,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
