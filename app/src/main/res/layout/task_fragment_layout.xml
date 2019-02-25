@@ -38,6 +38,15 @@
         android:textSize="@dimen/task_answers"
         android:focusableInTouchMode="false"/>
 
+    <EditText
+        android:id="@+id/taskTimeField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="time"
+        android:text=""
+        android:textSize="@dimen/task_answers"
+        android:focusableInTouchMode="false"/>
+
     <TextView
         android:id="@+id/taskPriorityLabel"
         android:layout_width="match_parent"

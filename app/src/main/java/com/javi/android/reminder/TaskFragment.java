@@ -1,6 +1,7 @@
 package com.javi.android.reminder;
 
 import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -27,6 +32,7 @@ public class TaskFragment extends Fragment {
     private Task task;
     private EditText titleField;
     private EditText dateField;
+    private EditText timeField;
     private RadioGroup priorityField;
     private CheckBox doneField;
 
@@ -83,6 +89,28 @@ public class TaskFragment extends Fragment {
                 DatePickerDialog dialog = DatePickerDialog.newInstance(task.getDate());
                 dialog.setTargetFragment(TaskFragment.this, 0);
                 dialog.show(manager, "dialogDate");
+            }
+        });
+
+        timeField = (EditText) v.findViewById(R.id.taskTimeField);
+        updateTime();
+        timeField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Calendar c = Calendar.getInstance();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+                TimePickerDialog timePicker;
+                timePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int selectedHour, int selectedMinute) {
+
+                        task.setTime(selectedHour, selectedMinute);
+                        updateTime();
+                    }
+                }, hour, minute, true);
+                timePicker.show();
             }
         });
 
@@ -171,6 +199,11 @@ public class TaskFragment extends Fragment {
     private void updateDate() {
 
         dateField.setText(task.getFormatedDate());
+    }
+
+    private void updateTime() {
+
+        timeField.setText(task.getFormatedTime());
     }
 
     private void hideKeyboard() {

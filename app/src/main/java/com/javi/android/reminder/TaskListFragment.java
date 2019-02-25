@@ -278,7 +278,7 @@ public class TaskListFragment extends Fragment {
 
             task = rTask;
             titleTextView.setText(task.getTitle());
-            dateTextView.setText(task.getFormatedDate());
+            dateTextView.setText(task.getFormatedDate() + "    " + task.getFormatedTime());
             doneImageView.setVisibility(task.isDone() ? View.VISIBLE : View.GONE);
             switch (task.getPriority()) {
                 case "ahigh":
