@@ -86,19 +86,6 @@ public class TaskListFragment extends Fragment {
             }
         });
         taskRecyclerView.addOnScrollListener(new RecyclerScrollListener(fab));
-        /*taskRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
-                    fab.hide();
-                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
-                    fab.show();
-                }
-            }
-        });*/
 
         if (savedInstanceState != null) {
             completedVisible = savedInstanceState.getBoolean("completedString");
@@ -149,6 +136,10 @@ public class TaskListFragment extends Fragment {
                 completedVisible = !completedVisible;
                 getActivity().invalidateOptionsMenu();
                 updateCompleted();
+                return true;
+            case R.id.deleteCompletedTasks:
+                TaskCollection.get(getActivity()).deleteCompletedTasks();
+                updateUI(orderBy);
                 return true;
             case R.id.createTestTasks:
                 createTestTasks();

@@ -14,6 +14,11 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/deleteCompletedTasks"
+        android:title="@string/delete_tasks"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/createTestTasks"
         android:title="@string/test_tasks"
         app:showAsAction="never"/>

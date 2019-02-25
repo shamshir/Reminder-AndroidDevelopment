@@ -109,6 +109,13 @@ public class TaskCollection {
                 new String[] { uuidString });
     }
 
+    public void deleteCompletedTasks() {
+
+        database.delete(TaskTable.NAME,
+                TaskTable.Cols.DONE + " = " + 1,
+                null);
+    }
+
     private TaskCursorWrapper queryTasks(String whereClause, String[] whereArgs, String orderByClause) {
 
         Cursor cursor = database.query(
