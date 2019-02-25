@@ -49,7 +49,12 @@ public class TaskFragment extends Fragment {
     public void onPause() {
 
         super.onPause();
-        TaskCollection.get(getActivity()).updateTask(task);
+
+        if (task.getTitle() == null) {
+            TaskCollection.get(getActivity()).deleteTask(task);
+        } else {
+            TaskCollection.get(getActivity()).updateTask(task);
+        }
     }
 
     @Override

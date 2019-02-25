@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.javi.android.reminder.listeners.RecyclerScrollListener;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -83,7 +85,8 @@ public class TaskListFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        taskRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        taskRecyclerView.addOnScrollListener(new RecyclerScrollListener(fab));
+        /*taskRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
 
@@ -95,7 +98,7 @@ public class TaskListFragment extends Fragment {
                     fab.show();
                 }
             }
-        });
+        });*/
 
         if (savedInstanceState != null) {
             completedVisible = savedInstanceState.getBoolean("completedString");
