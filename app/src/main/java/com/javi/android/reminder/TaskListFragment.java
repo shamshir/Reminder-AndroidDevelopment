@@ -1,14 +1,20 @@
 package com.javi.android.reminder;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.javi.android.reminder.listeners.RecyclerScrollListener;
+import com.javi.android.reminder.listeners.SwipeToDeleteCallback;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -92,6 +99,9 @@ public class TaskListFragment extends Fragment {
         }
 
         updateUI(orderBy);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(this.taskAdapter));
+        itemTouchHelper.attachToRecyclerView(taskRecyclerView);
 
         return view;
     }
@@ -301,9 +311,11 @@ public class TaskListFragment extends Fragment {
     ##################################  TaskAdapter Class  #########################################
     ##############################################################################################*/
 
-    private class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
+    public class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
 
         private List<Task> tasks;
+        private Task pendingDeleteTask;
+        private int pendingDeleteTaskPosition;
 
         public TaskAdapter(List<Task> rTasks) {
 
@@ -319,6 +331,7 @@ public class TaskListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(TaskHolder holder, int position) {
+
             Task task = tasks.get(position);
             holder.setItemData(task);
         }
@@ -330,7 +343,62 @@ public class TaskListFragment extends Fragment {
         }
 
         public void setTasks(List<Task> rTasks) {
+
             tasks = rTasks;
+        }
+
+        public Context getContext() {
+
+            return getActivity();
+        }
+
+        public void deleteItem(int position) {
+
+            pendingDeleteTask = tasks.get(position);
+            pendingDeleteTaskPosition = position;
+            tasks.remove(position);
+            notifyItemRemoved(position);
+            showUndoSnackbar();
+            // Falta eliminar la tarea de la base de datos definitivamente
+        }
+
+        private void showUndoSnackbar() {
+
+            View view = getActivity().findViewById(R.id.taskListRecyclerView);
+            Snackbar snackbar = Snackbar.make(view, "Hola", Snackbar.LENGTH_LONG); // Implementar string value en xml
+            snackbar.setAction("Algo", new View.OnClickListener() { // Implementar string value en xml
+                @Override
+                public void onClick(View v) {
+                    undoDelete();
+                }
+            });
+            snackbar.addCallback(new Snackbar.Callback() {
+                @Override
+                public void onShown(Snackbar snackbar) {
+                    adjustFabMargin(64);
+                }
+                @Override
+                public void onDismissed(Snackbar snackbar, int event) {
+                    adjustFabMargin(16);
+                }
+            });
+            snackbar.show();
+        }
+
+        private void undoDelete() {
+
+            tasks.add(pendingDeleteTaskPosition, pendingDeleteTask);
+            notifyItemInserted(pendingDeleteTaskPosition);
+        }
+
+        private void adjustFabMargin(int dpMargin) {
+
+            Resources r = getContext().getResources();
+            int pxMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpMargin, r.getDisplayMetrics());
+
+            ConstraintLayout.LayoutParams newParams = (ConstraintLayout.LayoutParams) fab.getLayoutParams();
+            newParams.bottomMargin = pxMargin;
+            fab.setLayoutParams(newParams);
         }
     }
 }
