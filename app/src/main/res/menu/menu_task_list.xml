@@ -23,4 +23,9 @@
         android:title="@string/test_tasks"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/deleteAllTasks"
+        android:title="@string/test_delete_tasks"
+        app:showAsAction="never"/>
+
 </menu>

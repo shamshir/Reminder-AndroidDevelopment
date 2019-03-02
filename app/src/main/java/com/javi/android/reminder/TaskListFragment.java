@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.javi.android.reminder.listeners.RecyclerScrollListener;
-import com.javi.android.reminder.listeners.SwipeToDeleteCallback;
+import com.javi.android.reminder.listeners.SwipeListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,6 +39,7 @@ public class TaskListFragment extends Fragment {
     private String orderBy = "byPriority";
     private TaskAdapter taskAdapter;
     private boolean completedVisible;
+    private TextView emptyText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,13 +95,15 @@ public class TaskListFragment extends Fragment {
         });
         taskRecyclerView.addOnScrollListener(new RecyclerScrollListener(fab));
 
+        emptyText = (TextView) view.findViewById(R.id.emptyText);
+
         if (savedInstanceState != null) {
             completedVisible = savedInstanceState.getBoolean("completedString");
         }
 
         updateUI(orderBy);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(this.taskAdapter));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeListener(this.taskAdapter));
         itemTouchHelper.attachToRecyclerView(taskRecyclerView);
 
         return view;
@@ -155,6 +158,10 @@ public class TaskListFragment extends Fragment {
                 createTestTasks();
                 updateUI(orderBy);
                 return true;
+            case R.id.deleteAllTasks:
+                TaskCollection.get(getActivity()).deleteAllTasks();
+                updateUI(orderBy);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -192,6 +199,12 @@ public class TaskListFragment extends Fragment {
         } else {
             taskAdapter.setTasks(tasks);
             taskAdapter.notifyDataSetChanged();
+        }
+
+        if (tasks.isEmpty()) {
+            emptyText.setVisibility(View.VISIBLE);
+        } else {
+            emptyText.setVisibility(View.GONE);
         }
 
         updateCompleted();

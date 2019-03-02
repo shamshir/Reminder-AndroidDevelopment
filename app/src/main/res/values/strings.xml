@@ -12,10 +12,12 @@
     <string name="show_completed">Show Completed</string>
     <string name="hide_completed">Hide Completed</string>
     <string name="delete_tasks">Delete Completed Tasks</string>
-    <string name="test_tasks">Test Tasks</string>
+    <string name="test_tasks">Dev(Test Tasks)</string>
+    <string name="test_delete_tasks">Dev(Delete All Tasks)</string>
     <string name="delete_task">Delete</string>
     <string name="priority_tab_content">Priority Tab</string>
     <string name="date_tab_content">Date Tab</string>
     <string name="snackbar_text">Task Deleted</string>
     <string name="snackbar_action">Cancel</string>
+    <string name="empty_text">"Error 404: Tasks not Found\nPress '+' to add a new Task!"</string>
 </resources>

@@ -116,6 +116,13 @@ public class TaskCollection {
                 null);
     }
 
+    public void deleteAllTasks() {
+
+        database.delete(TaskTable.NAME,
+                null,
+                null);
+    }
+
     private TaskCursorWrapper queryTasks(String whereClause, String[] whereArgs, String orderByClause) {
 
         Cursor cursor = database.query(

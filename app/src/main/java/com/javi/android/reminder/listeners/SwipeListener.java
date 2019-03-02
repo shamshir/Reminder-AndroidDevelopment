@@ -12,13 +12,13 @@ import android.view.View;
 import com.javi.android.reminder.R;
 import com.javi.android.reminder.TaskListFragment.TaskAdapter;
 
-public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
+public class SwipeListener extends ItemTouchHelper.SimpleCallback {
 
     private TaskAdapter tAdapter;
     private Drawable icon;
     private ColorDrawable background;
 
-    public SwipeToDeleteCallback(TaskAdapter adapter) {
+    public SwipeListener(TaskAdapter adapter) {
 
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
         this.tAdapter = adapter;
@@ -87,6 +87,7 @@ public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
 
         } else { // No Swipe
 
+            icon.setBounds(0, 0, 0, 0);
             background.setBounds(0, 0, 0, 0);
 
         }
