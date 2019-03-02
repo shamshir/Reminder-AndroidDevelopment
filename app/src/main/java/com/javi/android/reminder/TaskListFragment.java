@@ -300,10 +300,9 @@ public class TaskListFragment extends Fragment {
         @Override
         public void onClick(View view) {
 
-            //Toast.makeText(getActivity(), task.getTitle() + " pressed!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getActivity(), TaskActivity.class);
-            intent.putExtra("taskId", task.getId());
-            startActivity(intent);
+            task.setDone(!task.isDone());
+            TaskCollection.get(getContext()).updateTask(task);
+            updateUI(orderBy);
         }
     }
 
@@ -352,21 +351,29 @@ public class TaskListFragment extends Fragment {
             return getActivity();
         }
 
+        public void editItem(int position) {
+
+            Task task = tasks.get(position);
+            Intent intent = new Intent(getActivity(), TaskActivity.class);
+            intent.putExtra("taskId", task.getId());
+            startActivity(intent);
+        }
+
         public void deleteItem(int position) {
 
             pendingDeleteTask = tasks.get(position);
             pendingDeleteTaskPosition = position;
             tasks.remove(position);
             notifyItemRemoved(position);
+            TaskCollection.get(getContext()).deleteTask(pendingDeleteTask);
             showUndoSnackbar();
-            // Falta eliminar la tarea de la base de datos definitivamente
         }
 
         private void showUndoSnackbar() {
 
             View view = getActivity().findViewById(R.id.taskListRecyclerView);
-            Snackbar snackbar = Snackbar.make(view, "Hola", Snackbar.LENGTH_LONG); // Implementar string value en xml
-            snackbar.setAction("Algo", new View.OnClickListener() { // Implementar string value en xml
+            Snackbar snackbar = Snackbar.make(view, R.string.snackbar_text, Snackbar.LENGTH_LONG);
+            snackbar.setAction(R.string.snackbar_action, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     undoDelete();
@@ -389,6 +396,7 @@ public class TaskListFragment extends Fragment {
 
             tasks.add(pendingDeleteTaskPosition, pendingDeleteTask);
             notifyItemInserted(pendingDeleteTaskPosition);
+            TaskCollection.get(getContext()).addTask(pendingDeleteTask);
         }
 
         private void adjustFabMargin(int dpMargin) {

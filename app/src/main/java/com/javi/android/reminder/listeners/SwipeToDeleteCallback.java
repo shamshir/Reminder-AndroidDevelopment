@@ -30,7 +30,11 @@ public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 
         int position = viewHolder.getAdapterPosition();
-        tAdapter.deleteItem(position);
+        if (direction == 8) {
+            tAdapter.editItem(position);
+        } else if (direction == 4) {
+            tAdapter.deleteItem(position);
+        }
     }
 
     @Override
@@ -51,6 +55,9 @@ public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
 
         if (dX > 0) { // Right Swipe
 
+            this.icon = ContextCompat.getDrawable(tAdapter.getContext(), R.drawable.ic_edit);
+            this.background = new ColorDrawable(Color.GREEN);
+
             int iconLeft = itemView.getLeft() + iconMargin;
             int iconRight = iconLeft + icon.getIntrinsicWidth();
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
@@ -63,6 +70,9 @@ public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
             );
 
         } else if (dX < 0) { // Left Swipe
+
+            this.icon = ContextCompat.getDrawable(tAdapter.getContext(), R.drawable.ic_paperbin);
+            this.background = new ColorDrawable(Color.RED);
 
             int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
             int iconRight = itemView.getRight() - iconMargin;

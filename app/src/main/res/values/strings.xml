@@ -16,4 +16,6 @@
     <string name="delete_task">Delete</string>
     <string name="priority_tab_content">Priority Tab</string>
     <string name="date_tab_content">Date Tab</string>
+    <string name="snackbar_text">Task Deleted</string>
+    <string name="snackbar_action">Cancel</string>
 </resources>
