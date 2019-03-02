@@ -4,7 +4,7 @@
     <string name="task_date_label">When?</string>
     <string name="task_priority_label">How important?</string>
     <string name="task_priority_high_option">High</string>
-    <string name="task_priority_normal_option">Normal</string>
+    <string name="task_priority_medium_option">Medium</string>
     <string name="task_priority_low_option">Low</string>
     <string name="task_done_label">Done?</string>
     <string name="task_done_field">Done!</string>
@@ -12,7 +12,7 @@
     <string name="show_completed">Show Completed</string>
     <string name="hide_completed">Hide Completed</string>
     <string name="delete_tasks">Delete Completed Tasks</string>
-    <string name="test_tasks">Dev(Test Tasks)</string>
+    <string name="test_tasks">Dev(Create Test Tasks)</string>
     <string name="test_delete_tasks">Dev(Delete All Tasks)</string>
     <string name="delete_task">Delete</string>
     <string name="priority_tab_content">Priority Tab</string>

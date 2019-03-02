@@ -69,11 +69,11 @@
             android:textSize="@dimen/task_answers"/>
 
         <RadioButton
-            android:id="@+id/taskPriorityNormal"
+            android:id="@+id/taskPriorityMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/task_priority_normal_option"
+            android:text="@string/task_priority_medium_option"
             android:textSize="@dimen/task_answers"/>
 
         <RadioButton

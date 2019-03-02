@@ -228,17 +228,17 @@ public class TaskListFragment extends Fragment {
             Task task3 = new Task();
             task3.setTitle("Hacer ejercicio");
             task3.setDate(new SimpleDateFormat("dd/MM/yyyy").parse("22/01/2019"));
-            task3.setPriority("bnormal");
+            task3.setPriority("bmedium");
             task3.setDone(false);
             Task task4 = new Task();
             task4.setTitle("Llamar a Bibiana");
             task4.setDate(new SimpleDateFormat("dd/MM/yyyy").parse("10/01/2019"));
-            task4.setPriority("bnormal");
+            task4.setPriority("bmedium");
             task4.setDone(true);
             Task task5 = new Task();
             task5.setTitle("Comprar cepillo de dientes");
             task5.setDate(new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2019"));
-            task5.setPriority("bnormal");
+            task5.setPriority("bmedium");
             task5.setDone(false);
             Task task6 = new Task();
             task6.setTitle("Pasar apuntes a sucio");
@@ -255,6 +255,21 @@ public class TaskListFragment extends Fragment {
             task8.setDate(new SimpleDateFormat("dd/MM/yyyy").parse("05/01/2019"));
             task8.setPriority("clow");
             task8.setDone(true);
+            Task task9 = new Task();
+            task9.setTitle("Arreglar la ducha");
+            task9.setDate(new SimpleDateFormat("dd/MM/yyyy").parse("04/03/2019"));
+            task9.setPriority("ahigh");
+            task9.setDone(false);
+            Task task10 = new Task();
+            task10.setTitle("Comprar Robot");
+            task10.setDate(new SimpleDateFormat("dd/MM/yyyy").parse("04/03/2019"));
+            task10.setPriority("bmedium");
+            task10.setDone(false);
+            Task task11 = new Task();
+            task11.setTitle("Estudiar Programación Android");
+            task11.setDate(new SimpleDateFormat("dd/MM/yyyy").parse("04/03/2019"));
+            task11.setPriority("clow");
+            task11.setDone(false);
 
             tasks.addTask(task1);
             tasks.addTask(task2);
@@ -264,6 +279,9 @@ public class TaskListFragment extends Fragment {
             tasks.addTask(task6);
             tasks.addTask(task7);
             tasks.addTask(task8);
+            tasks.addTask(task9);
+            tasks.addTask(task10);
+            tasks.addTask(task11);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -301,7 +319,7 @@ public class TaskListFragment extends Fragment {
                 case "ahigh":
                     titleTextView.setTextColor(Color.RED);
                     break;
-                case "bnormal":
+                case "bmedium":
                     titleTextView.setTextColor(Color.YELLOW);
                     break;
                 case "clow":

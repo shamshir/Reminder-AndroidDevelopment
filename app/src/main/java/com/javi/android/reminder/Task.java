@@ -22,7 +22,7 @@ public class Task {
 
         this.id = id;
         date = newDate();
-        priority = "bnormal";
+        priority = "bmedium";
     }
 
     public UUID getId() {

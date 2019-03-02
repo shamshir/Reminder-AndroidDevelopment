@@ -17,13 +17,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -121,8 +118,8 @@ public class TaskFragment extends Fragment {
             case "ahigh":
                 priorityField.check(R.id.taskPriorityHigh);
                 break;
-            case "bnormal":
-                priorityField.check(R.id.taskPriorityNormal);
+            case "bmedium":
+                priorityField.check(R.id.taskPriorityMedium);
                 break;
             case "clow":
                 priorityField.check(R.id.taskPriorityLow);
@@ -138,8 +135,8 @@ public class TaskFragment extends Fragment {
                     case R.id.taskPriorityHigh:
                         task.setPriority("ahigh");
                         break;
-                    case R.id.taskPriorityNormal:
-                        task.setPriority("bnormal");
+                    case R.id.taskPriorityMedium:
+                        task.setPriority("bmedium");
                         break;
                     case R.id.taskPriorityLow:
                         task.setPriority("clow");
