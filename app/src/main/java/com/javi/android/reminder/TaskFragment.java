@@ -21,6 +21,9 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
+import com.javi.android.reminder.notifications.NotificationManager;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -51,6 +54,13 @@ public class TaskFragment extends Fragment {
             TaskCollection.get(getActivity()).deleteTask(task);
         } else {
             TaskCollection.get(getActivity()).updateTask(task);
+
+            if (!task.isDone()) {
+                /* Set Notification */
+                String tag = task.getId().toString();
+                NotificationManager.stopNotifications(tag);
+                NotificationManager.scheduleNotification(task, tag);
+            }
         }
     }
 
@@ -100,6 +110,11 @@ public class TaskFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Calendar c = Calendar.getInstance();
+                c.setTime(task.getDate());
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
                 TimePickerDialog timePicker;
                 timePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -108,7 +123,7 @@ public class TaskFragment extends Fragment {
                         task.setTime(selectedHour, selectedMinute);
                         updateTime();
                     }
-                }, 0, 0, true);
+                }, hour, minute, true);
                 timePicker.show();
             }
         });
