@@ -23,7 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.javi.android.reminder.listeners.RecyclerScrollListener;
@@ -298,17 +298,18 @@ public class TaskListFragment extends Fragment {
         private Task task;
         private TextView titleTextView;
         private TextView dateTextView;
-        private ImageView doneImageView;
+        private CheckBox doneCheckboxView;
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
 
             super(inflater.inflate(R.layout.task_list_item_layout, parent, false));
 
-            itemView.setOnClickListener(this);
+            // itemView.setOnClickListener(this); Listener fot the Whole Task View
 
             titleTextView = (TextView) itemView.findViewById(R.id.taskTitle);
             dateTextView = (TextView) itemView.findViewById(R.id.taskDate);
-            doneImageView = (ImageView) itemView.findViewById(R.id.taskDone);
+            doneCheckboxView = (CheckBox) itemView.findViewById(R.id.taskDone);
+            doneCheckboxView.setOnClickListener(this);
         }
 
         public void setItemData(Task rTask) {
@@ -337,11 +338,11 @@ public class TaskListFragment extends Fragment {
 
             /* Set Done/Not Done */
             if (task.isDone()) {
-                doneImageView.setVisibility(View.VISIBLE);
+                doneCheckboxView.setChecked(true);
 
                 titleTextView.setPaintFlags(titleTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             } else {
-                doneImageView.setVisibility(View.GONE);
+                doneCheckboxView.setChecked(false);
 
                 titleTextView.setPaintFlags(titleTextView.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
             }

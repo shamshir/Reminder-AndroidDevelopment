@@ -50,7 +50,7 @@ public class TaskFragment extends Fragment {
 
         super.onPause();
 
-        if (task.getTitle() == null) {
+        if (task.getTitle() == null || task.getTitle().equals("")) {
             TaskCollection.get(getActivity()).deleteTask(task);
         } else {
             TaskCollection.get(getActivity()).updateTask(task);
@@ -203,7 +203,9 @@ public class TaskFragment extends Fragment {
 
         switch (item.getItemId()) {
             case R.id.showNotification:
-                NotificationManager.showNotification(getActivity(), task);
+                if (task.getTitle() != null && !task.getTitle().equals("")) {
+                    NotificationManager.showNotification(getActivity(), task);
+                }
                 return true;
             case R.id.deleteTask:
                 TaskCollection.get(getActivity()).deleteTask(task);
