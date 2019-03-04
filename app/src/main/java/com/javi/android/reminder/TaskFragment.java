@@ -201,6 +201,9 @@ public class TaskFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.showNotification:
+
+                return true;
             case R.id.deleteTask:
                 TaskCollection.get(getActivity()).deleteTask(task);
                 getActivity().finish();

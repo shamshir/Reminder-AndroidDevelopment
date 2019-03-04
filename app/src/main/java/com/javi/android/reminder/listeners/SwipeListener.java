@@ -21,6 +21,7 @@ public class SwipeListener extends ItemTouchHelper.SimpleCallback {
     public SwipeListener(TaskAdapter adapter) {
 
         super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+
         this.tAdapter = adapter;
         this.icon = ContextCompat.getDrawable(tAdapter.getContext(), R.drawable.ic_paperbin);
         this.background = new ColorDrawable(Color.RED);
@@ -30,10 +31,14 @@ public class SwipeListener extends ItemTouchHelper.SimpleCallback {
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
 
         int position = viewHolder.getAdapterPosition();
-        if (direction == 8) {
+        if (direction == 8) { // Right Swipe
+
             tAdapter.editItem(position);
-        } else if (direction == 4) {
+
+        } else if (direction == 4) { // Left Swipe
+
             tAdapter.deleteItem(position);
+
         }
     }
 

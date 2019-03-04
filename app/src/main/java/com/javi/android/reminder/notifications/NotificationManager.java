@@ -34,12 +34,21 @@ public class NotificationManager {
                 .addTag(tag)
                 .build();
 
-        /* Queue Notification */
-        WorkManager.getInstance().enqueue(notificationWork);
+        /* Queue Notification (Only if Task is not Due) */
+        if (time > 0) {
+
+            WorkManager.getInstance().enqueue(notificationWork);
+        }
+    }
+
+    public static void showNotification(Task task) {
+
+
     }
 
     private static long calculateTime(Date taskDate) {
 
+        /* Difference in Milliseconds from Date to Now */
         long timeInMilliseconds = taskDate.getTime() - new Date().getTime();
         return timeInMilliseconds;
     }

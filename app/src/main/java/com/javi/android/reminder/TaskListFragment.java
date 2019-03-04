@@ -418,6 +418,8 @@ public class TaskListFragment extends Fragment {
                 @Override
                 public void onDismissed(Snackbar snackbar, int event) {
                     adjustFabMargin(16);
+
+                    updateUI(orderBy);
                 }
             });
             snackbar.show();
