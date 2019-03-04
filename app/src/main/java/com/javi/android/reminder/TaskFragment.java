@@ -57,9 +57,8 @@ public class TaskFragment extends Fragment {
 
             if (!task.isDone()) {
                 /* Set Notification */
-                String tag = task.getId().toString();
-                NotificationManager.stopNotifications(tag);
-                NotificationManager.scheduleNotification(task, tag);
+                NotificationManager.stopNotifications(task);
+                NotificationManager.scheduleNotification(task);
             }
         }
     }
@@ -109,6 +108,8 @@ public class TaskFragment extends Fragment {
         timeField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                hideKeyboard();
 
                 Calendar c = Calendar.getInstance();
                 c.setTime(task.getDate());
@@ -202,7 +203,7 @@ public class TaskFragment extends Fragment {
 
         switch (item.getItemId()) {
             case R.id.showNotification:
-
+                NotificationManager.showNotification(getActivity(), task);
                 return true;
             case R.id.deleteTask:
                 TaskCollection.get(getActivity()).deleteTask(task);

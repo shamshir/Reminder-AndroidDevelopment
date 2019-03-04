@@ -1,5 +1,7 @@
 package com.javi.android.reminder.notifications;
 
+import android.content.Context;
+
 import com.javi.android.reminder.Task;
 
 import java.util.Date;
@@ -11,13 +13,19 @@ import androidx.work.WorkManager;
 
 public class NotificationManager {
 
-    public static void stopNotifications(String tag) {
+    public static void stopNotifications(Task task) {
+
+        /* Obtain Task Unique Tag from UUID */
+        String tag = task.getId().toString();
 
         /* Cancel Notifications with Specified Tag */
         WorkManager.getInstance().cancelAllWorkByTag(tag);
     }
 
-    public static void scheduleNotification(Task task, String tag) {
+    public static void scheduleNotification(Task task) {
+
+        /* Obtain Task Unique Tag from UUID */
+        String tag = task.getId().toString();
 
         /* Set Input Data (Notification Title and Text) */
         Data.Builder inputData = new Data.Builder();
@@ -41,9 +49,15 @@ public class NotificationManager {
         }
     }
 
-    public static void showNotification(Task task) {
+    public static void showNotification(Context context, Task task) {
 
+        /* Obtain Notification Data */
+        String notificationTitle = task.getTitle();
+        String notificationText = task.getFormatedDate() + "    " + task.getFormatedTime();
+        int notificationId = (int) System.currentTimeMillis();
 
+        /* Create Task Notification */
+        new TaskNotification(context, notificationTitle, notificationText, notificationId);
     }
 
     private static long calculateTime(Date taskDate) {
