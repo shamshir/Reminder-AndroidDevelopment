@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -311,10 +313,16 @@ public class TaskListFragment extends Fragment {
 
         public void setItemData(Task rTask) {
 
+            /* Set Task Itself */
             task = rTask;
+
+            /* Set Title */
             titleTextView.setText(task.getTitle());
+
+            /* Set Date and Time */
             dateTextView.setText(task.getFormatedDate() + "    " + task.getFormatedTime());
-            doneImageView.setVisibility(task.isDone() ? View.VISIBLE : View.GONE);
+
+            /* Set Priority */
             switch (task.getPriority()) {
                 case "ahigh":
                     titleTextView.setTextColor(Color.RED);
@@ -326,14 +334,35 @@ public class TaskListFragment extends Fragment {
                     titleTextView.setTextColor(Color.GREEN);
                     break;
             }
+
+            /* Set Done/Not Done */
+            if (task.isDone()) {
+                doneImageView.setVisibility(View.VISIBLE);
+
+                titleTextView.setPaintFlags(titleTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            } else {
+                doneImageView.setVisibility(View.GONE);
+
+                titleTextView.setPaintFlags(titleTextView.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+            }
         }
 
         @Override
         public void onClick(View view) {
 
+            /* Toggle Task Done or Not Done */
             task.setDone(!task.isDone());
             TaskCollection.get(getContext()).updateTask(task);
-            updateUI(orderBy);
+            setItemData(task);
+
+            /* Small Feedback Delay */
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    updateUI(orderBy);
+                }
+            }, 1000);
         }
     }
 
