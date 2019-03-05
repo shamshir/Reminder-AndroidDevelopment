@@ -2,13 +2,12 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -18,54 +17,96 @@
             android:id="@+id/taskTitleLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/task_title_label"
-            android:textSize="@dimen/task_questions"/>
+            android:textSize="@dimen/task_questions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/taskTitleField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:inputType="textCapSentences"
             android:text=""
-            android:textSize="@dimen/task_answers"/>
+            android:textSize="@dimen/task_answers"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskTitleLabel" />
 
         <TextView
             android:id="@+id/taskDateLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/task_date_label"
-            android:textSize="@dimen/task_questions"/>
+            android:textSize="@dimen/task_questions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskTitleField" />
 
         <EditText
             android:id="@+id/taskDateField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:focusableInTouchMode="false"
             android:inputType="date"
             android:text=""
             android:textSize="@dimen/task_answers"
-            android:focusableInTouchMode="false"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskDateLabel" />
 
         <EditText
             android:id="@+id/taskTimeField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:focusableInTouchMode="false"
             android:inputType="time"
             android:text=""
             android:textSize="@dimen/task_answers"
-            android:focusableInTouchMode="false"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskDateField" />
 
         <TextView
             android:id="@+id/taskPriorityLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/task_priority_label"
-            android:textSize="@dimen/task_questions" />
+            android:textSize="@dimen/task_questions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskTimeField" />
 
         <RadioGroup
             android:id="@+id/taskPriorityAnswers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskPriorityLabel">
 
             <RadioButton
                 android:id="@+id/taskPriorityHigh"
@@ -73,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/task_priority_high_option"
-                android:textSize="@dimen/task_answers"/>
+                android:textSize="@dimen/task_answers" />
 
             <RadioButton
                 android:id="@+id/taskPriorityMedium"
@@ -81,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/task_priority_medium_option"
-                android:textSize="@dimen/task_answers"/>
+                android:textSize="@dimen/task_answers" />
 
             <RadioButton
                 android:id="@+id/taskPriorityLow"
@@ -89,23 +130,36 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/task_priority_low_option"
-                android:textSize="@dimen/task_answers"/>
+                android:textSize="@dimen/task_answers" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/taskDoneLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/task_done_label"
-            android:textSize="@dimen/task_questions"/>
+            android:textSize="@dimen/task_questions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskPriorityAnswers" />
 
-        <CheckBox
+        <Switch
             android:id="@+id/taskDoneField"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task_done_field"
-            android:textSize="@dimen/task_answers"/>
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:switchPadding="@dimen/task_list_date"
+            android:text="@string/task_done_no"
+            android:textSize="@dimen/task_answers"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskDoneLabel" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

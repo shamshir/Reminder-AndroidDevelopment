@@ -15,10 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TimePicker;
 
 import com.javi.android.reminder.notifications.NotificationManager;
@@ -34,7 +34,7 @@ public class TaskFragment extends Fragment {
     private EditText dateField;
     private EditText timeField;
     private RadioGroup priorityField;
-    private CheckBox doneField;
+    private Switch doneField;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -161,8 +161,13 @@ public class TaskFragment extends Fragment {
             }
         });
 
-        doneField = (CheckBox) v.findViewById(R.id.taskDoneField);
+        doneField = (Switch) v.findViewById(R.id.taskDoneField);
         doneField.setChecked(task.isDone());
+        if (task.isDone()) {
+            doneField.setText(R.string.task_done_yes);
+        } else {
+            doneField.setText(R.string.task_done_no);
+        }
         doneField.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -170,6 +175,12 @@ public class TaskFragment extends Fragment {
                 hideKeyboard();
 
                 task.setDone(isChecked);
+
+                if (isChecked) {
+                    doneField.setText(R.string.task_done_yes);
+                } else {
+                    doneField.setText(R.string.task_done_no);
+                }
             }
         });
 

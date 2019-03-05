@@ -7,7 +7,8 @@
     <string name="task_priority_medium_option">Medium</string>
     <string name="task_priority_low_option">Low</string>
     <string name="task_done_label">Done?</string>
-    <string name="task_done_field">Done!</string>
+    <string name="task_done_yes">Yes</string>
+    <string name="task_done_no">No</string>
     <string name="new_task">New Task</string>
     <string name="show_completed">Show Completed</string>
     <string name="hide_completed">Hide Completed</string>
