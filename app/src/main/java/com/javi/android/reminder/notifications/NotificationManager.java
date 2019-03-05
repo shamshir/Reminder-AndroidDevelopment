@@ -29,7 +29,7 @@ public class NotificationManager {
 
         /* Set Input Data (Notification Title and Text) */
         Data.Builder inputData = new Data.Builder();
-        inputData.putStringArray("taskData", new String[] {task.getTitle(), task.getFormatedDate() + "    " + task.getFormatedTime()});
+        inputData.putStringArray("taskData", new String[] {task.getTitle(), task.getFormatedDate() + " - " + task.getFormatedTime()});
         Data data = inputData.build();
 
         /* Calculate Time until Notification */
@@ -53,7 +53,7 @@ public class NotificationManager {
 
         /* Obtain Notification Data */
         String notificationTitle = task.getTitle();
-        String notificationText = task.getFormatedDate() + "    " + task.getFormatedTime();
+        String notificationText = task.getFormatedDate() + " - " + task.getFormatedTime();
         int notificationId = (int) System.currentTimeMillis();
 
         /* Create Task Notification */

@@ -3,7 +3,6 @@ package com.javi.android.reminder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.javi.android.reminder.listeners.RecyclerScrollListener;
@@ -298,6 +298,7 @@ public class TaskListFragment extends Fragment {
         private Task task;
         private TextView titleTextView;
         private TextView dateTextView;
+        private ImageView imageView;
         private CheckBox doneCheckboxView;
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -308,6 +309,7 @@ public class TaskListFragment extends Fragment {
 
             titleTextView = (TextView) itemView.findViewById(R.id.taskTitle);
             dateTextView = (TextView) itemView.findViewById(R.id.taskDate);
+            imageView = (ImageView) itemView.findViewById(R.id.taskPriorityImage);
             doneCheckboxView = (CheckBox) itemView.findViewById(R.id.taskDone);
             doneCheckboxView.setOnClickListener(this);
         }
@@ -321,18 +323,18 @@ public class TaskListFragment extends Fragment {
             titleTextView.setText(task.getTitle());
 
             /* Set Date and Time */
-            dateTextView.setText(task.getFormatedDate() + "    " + task.getFormatedTime());
+            dateTextView.setText(task.getFormatedDate() + " - " + task.getFormatedTime());
 
             /* Set Priority */
             switch (task.getPriority()) {
                 case "ahigh":
-                    titleTextView.setTextColor(Color.RED);
+                    imageView.setImageResource(R.drawable.ic_priority_high);
                     break;
                 case "bmedium":
-                    titleTextView.setTextColor(Color.YELLOW);
+                    imageView.setImageResource(R.drawable.ic_priority_medium);
                     break;
                 case "clow":
-                    titleTextView.setTextColor(Color.GREEN);
+                    imageView.setImageResource(R.drawable.ic_priority_low);
                     break;
             }
 
