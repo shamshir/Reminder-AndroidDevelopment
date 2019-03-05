@@ -3,6 +3,7 @@ package com.javi.android.reminder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -343,10 +344,14 @@ public class TaskListFragment extends Fragment {
                 doneCheckboxView.setChecked(true);
 
                 titleTextView.setPaintFlags(titleTextView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                itemView.setBackgroundColor(getResources().getColor(R.color.colorDone));
             } else {
                 doneCheckboxView.setChecked(false);
 
                 titleTextView.setPaintFlags(titleTextView.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+
+                itemView.setBackgroundColor(Color.WHITE);
             }
         }
 

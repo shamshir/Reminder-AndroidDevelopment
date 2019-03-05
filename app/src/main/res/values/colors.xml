@@ -4,5 +4,7 @@
     <!--<color name="colorAccent">#D81B60</color>-->
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="brain_launcher_background">#303EA6</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="colorDone">#E6E6E6</color>
 </resources>

@@ -2,4 +2,6 @@
 <resources>
     <dimen name="task_questions">30sp</dimen>
     <dimen name="task_answers">25sp</dimen>
+    <dimen name="task_list_title">18sp</dimen>
+    <dimen name="task_list_date">14sp</dimen>
 </resources>

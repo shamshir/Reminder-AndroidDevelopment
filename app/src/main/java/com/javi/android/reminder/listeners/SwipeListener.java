@@ -61,7 +61,7 @@ public class SwipeListener extends ItemTouchHelper.SimpleCallback {
         if (dX > 0) { // Right Swipe
 
             this.icon = ContextCompat.getDrawable(tAdapter.getContext(), R.drawable.ic_edit);
-            this.background = new ColorDrawable(Color.GREEN);
+            this.background = new ColorDrawable(Color.parseColor("#31B404"));
 
             int iconLeft = itemView.getLeft() + iconMargin;
             int iconRight = iconLeft + icon.getIntrinsicWidth();
